@@ -33,6 +33,8 @@ app.post("/create-checkout-session", async (req, res) => {
         };
       }),
     });
+
+    console.log(session);
     res.status(200).json({ url: session.url });
   } catch (err) {
     res.status(500).json({ error: err.message });
