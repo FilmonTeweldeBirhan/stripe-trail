@@ -1,8 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.static("public"));
@@ -35,6 +38,7 @@ app.post("/create-checkout-session", async (req, res) => {
     });
 
     console.log(session);
+
     res.status(200).json({ url: session.url });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -45,4 +49,4 @@ app.use("/sometxt", (req, res) => {
   res.status(200).send("<h1>HEYYYY!</h1>");
 });
 
-app.listen(3000);
+// app.listen(3000);

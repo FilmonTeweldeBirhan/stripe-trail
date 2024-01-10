@@ -1,20 +1,23 @@
 const payBtn = document.querySelector("#payBtn");
 
 payBtn.addEventListener("click", async () => {
-  //   console.log("Alright im clicking the button.");
+  // console.log(`${process.env.URL}/create-checkout-session`);
   try {
-    const session = await fetch("/create-checkout-session", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: [
-          { id: 1, quantity: 2 },
-          { id: 2, quantity: 5 },
-        ],
-      }),
-    });
+    const session = await fetch(
+      `https://strip-trail.onrender.com/create-checkout-session`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            { id: 1, quantity: 2 },
+            { id: 2, quantity: 5 },
+          ],
+        }),
+      }
+    );
     console.log("session");
 
     const json = await session.json();
