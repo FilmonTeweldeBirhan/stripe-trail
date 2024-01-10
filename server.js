@@ -8,8 +8,24 @@ app.use(express.json());
 app.use(express.static("public"));
 
 const items = new Map([
-  [1, { productName: "Laptop", price: 1000 }],
-  [2, { productName: "Samsung A71 5G", price: 399 }],
+  [
+    1,
+    {
+      productName: "Razor Gaming Pc",
+      price: 1000,
+      image:
+        "https://assets2.razerzone.com/images/pnx.assets/381e915d58d2b9759725c30a9f2c3a0f/razer-blade-16-2023-laptop-500x500.jpg",
+    },
+  ],
+  [
+    2,
+    {
+      productName: "Samsung A71 5G",
+      price: 399,
+      image:
+        "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a71-5g-1.jpg",
+    },
+  ],
 ]);
 
 app.post("/create-checkout-session", async (req, res) => {
@@ -26,6 +42,7 @@ app.post("/create-checkout-session", async (req, res) => {
             currency: "usd",
             product_data: {
               name: storeItem.productName,
+              images: [item.image],
             },
             unit_amount: storeItem.price * 100,
           },
