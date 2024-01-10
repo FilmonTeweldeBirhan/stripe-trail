@@ -33,11 +33,14 @@ app.post("/create-checkout-session", async (req, res) => {
         };
       }),
     });
-
     res.status(200).json({ url: session.url });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+app.use("/sometxt", (req, res) => {
+  res.status(200).send("<h1>HEYYYY!</h1>");
 });
 
 app.listen(3000);
