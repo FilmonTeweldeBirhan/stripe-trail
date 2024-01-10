@@ -19,6 +19,9 @@ payBtn.addEventListener("click", async () => {
 
     const json = await session.json();
 
+    console.log("URL:", json.url);
+    console.log("Session:", session);
+
     if (!session.ok) Promise.reject(json);
 
     if (session.ok) {
