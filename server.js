@@ -17,8 +17,8 @@ app.post("/create-checkout-session", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `../success.html`,
-      cancel_url: `../error.html`,
+      success_url: `https://strip-trail.onrender.com/success.html`,
+      cancel_url: `https://strip-trail.onrender.com/error.html`,
       line_items: req.body.items.map((item) => {
         const storeItem = items.get(item.id);
         return {
